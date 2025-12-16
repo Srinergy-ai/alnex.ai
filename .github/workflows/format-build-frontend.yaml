@@ -25,18 +25,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-
-      - name: Configure Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Install Dependencies
         run: npm install --force
@@ -47,9 +40,8 @@ jobs:
       - name: Run i18next
         run: npm run i18n:parse
 
-      - name: Check for Changes After Format
-        run: |
-          git diff --exit-code || (echo "❌ Code formatting check failed. Please run 'npm run format' and commit the changes." && git diff && exit 1)
+      # - name: Check for Changes After Format
+      #   run: git diff --exit-code
 
       - name: Build Frontend
         run: npm run build

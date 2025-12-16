@@ -78,13 +78,17 @@
 					<div
 						class="  self-center mx-1 disabled:text-gray-600 disabled:hover:text-gray-600 -translate-y-[0.5px]"
 					>
-						<Tooltip content={selectedModels.length >= MAX_MODELS ? `Maximum ${MAX_MODELS} models allowed` : $i18n.t('Add Model')}>
+						<Tooltip
+							content={selectedModels.length >= MAX_MODELS
+								? `Maximum ${MAX_MODELS} models allowed`
+								: $i18n.t('Add Model')}
+						>
 							<button
 								class="disabled:opacity-50 disabled:cursor-not-allowed"
 								disabled={disabled || selectedModels.length >= MAX_MODELS}
 								on:click={() => {
 									if (selectedModels.length < MAX_MODELS) {
-									selectedModels = [...selectedModels, ''];
+										selectedModels = [...selectedModels, ''];
 									} else {
 										toast.error(`Maximum ${MAX_MODELS} models allowed`);
 									}
@@ -108,14 +112,18 @@
 					<div
 						class="  self-center mx-1 disabled:text-gray-600 disabled:hover:text-gray-600 -translate-y-[0.5px]"
 					>
-						<Tooltip content={selectedModels.length <= 1 ? $i18n.t('At least one model is required') : $i18n.t('Remove Model')}>
+						<Tooltip
+							content={selectedModels.length <= 1
+								? $i18n.t('At least one model is required')
+								: $i18n.t('Remove Model')}
+						>
 							<button
 								class="disabled:opacity-50 disabled:cursor-not-allowed"
 								disabled={disabled || selectedModels.length <= 1}
 								on:click={() => {
 									if (selectedModels.length > 1) {
-									selectedModels.splice(selectedModelIdx, 1);
-									selectedModels = selectedModels;
+										selectedModels.splice(selectedModelIdx, 1);
+										selectedModels = selectedModels;
 									}
 								}}
 								aria-label="Remove Model"
