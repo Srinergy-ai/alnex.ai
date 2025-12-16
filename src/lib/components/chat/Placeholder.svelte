@@ -120,12 +120,12 @@
 											selectedModelIdx = modelIdx;
 										}}
 									>
-										<img
+										<!-- <img
 											src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model?.id}&lang=${$i18n.language}`}
 											class=" size-9 @sm:size-10 rounded-full border-[1px] border-gray-100 dark:border-none"
 											aria-hidden="true"
 											draggable="false"
-										/>
+										/> -->
 									</button>
 								</Tooltip>
 							{/each}
@@ -133,7 +133,7 @@
 					</div>
 
 					<div
-						class=" text-3xl @sm:text-3xl line-clamp-1 flex items-center"
+						class=" text-3xl @sm:text-3xl line-clamp-1 flex items-center gap-3"
 						in:fade={{ duration: 100 }}
 					>
 						{#if models[selectedModelIdx]?.name}
@@ -147,6 +147,13 @@
 								</span>
 							</Tooltip>
 						{:else}
+							<img
+								crossorigin="anonymous"
+								src="/static/favicon.png"
+								class="size-10 rounded-full"
+								alt="logo"
+								draggable="false"
+							/>
 							{$i18n.t('Hello, {{name}}', { name: $user?.name })}
 						{/if}
 					</div>

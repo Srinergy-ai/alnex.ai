@@ -15,21 +15,8 @@
 		const logo = document.getElementById('logo');
 
 		if (logo) {
-			const isDarkMode = document.documentElement.classList.contains('dark');
-
-			if (isDarkMode) {
-				const darkImage = new Image();
-				darkImage.src = `${WEBUI_BASE_URL}/static/favicon-dark.png`;
-
-				darkImage.onload = () => {
-					logo.src = `${WEBUI_BASE_URL}/static/favicon-dark.png`;
-					logo.style.filter = ''; // Ensure no inversion is applied if splash-dark.png exists
-				};
-
-				darkImage.onerror = () => {
-					logo.style.filter = 'invert(1)'; // Invert image if splash-dark.png is missing
-				};
-			}
+			logo.src = `${WEBUI_BASE_URL}/static/favicon.png`;
+			logo.style.filter = ''; // Use favicon.png for both light and dark modes
 		}
 	}
 

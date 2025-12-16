@@ -79,16 +79,26 @@
 		<div
 			class=" mt-2 mb-4 text-3xl text-gray-800 dark:text-gray-100 text-left flex items-center gap-4 font-primary"
 		>
-			<div>
-				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
-					{#if models[selectedModelIdx]?.name}
-						{models[selectedModelIdx]?.name}
-					{:else}
-						{$i18n.t('Hello, {{name}}', { name: $user?.name })}
-					{/if}
-				</div>
+			<div class="flex items-center gap-3">
+				{#if !models[selectedModelIdx]?.name}
+					<img
+						crossorigin="anonymous"
+						src="/static/favicon.png"
+						class="size-8 rounded-full"
+						alt="logo"
+						draggable="false"
+					/>
+				{/if}
+				<div>
+					<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
+						{#if models[selectedModelIdx]?.name}
+							{models[selectedModelIdx]?.name}
+						{:else}
+							{$i18n.t('Hello, {{name}}', { name: $user?.name })}
+						{/if}
+					</div>
 
-				<div in:fade={{ duration: 200, delay: 200 }}>
+					<div in:fade={{ duration: 200, delay: 200 }}>
 					{#if models[selectedModelIdx]?.info?.meta?.description ?? null}
 						<div
 							class="mt-0.5 text-base font-normal text-gray-500 dark:text-gray-400 line-clamp-3 markdown"
@@ -120,6 +130,7 @@
 							{$i18n.t('How can I help you today?')}
 						</div>
 					{/if}
+					</div>
 				</div>
 			</div>
 		</div>

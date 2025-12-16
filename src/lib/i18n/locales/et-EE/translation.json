@@ -1768,7 +1768,7 @@
 	"Web Search Query Generation": "Veebi otsingupäringu genereerimine",
 	"Webhook URL": "Webhooki URL",
 	"Webpage URL": "Webpage URL",
-	"WebUI Settings": "WebUI seaded",
+	"UI Settings": "UI seaded",
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "WebUI will make requests kuni \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI teeb päringuid aadressile \"{{url}}/api/chat\"",

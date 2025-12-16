@@ -13,6 +13,8 @@
 
 	export let showSetDefault = true;
 
+	const MAX_MODELS = 3;
+
 	const saveDefaultModel = async () => {
 		const hasEmptyModel = selectedModels.filter((it) => it === '');
 		if (hasEmptyModel.length) {
@@ -43,8 +45,11 @@
 			$models.map((m) => m.id).includes(model) ? model : ''
 		);
 
-		if (JSON.stringify(_selectedModels) !== JSON.stringify(selectedModels)) {
-			selectedModels = _selectedModels;
+		// Enforce maximum of 3 models
+		const limitedModels = _selectedModels.slice(0, MAX_MODELS);
+
+		if (JSON.stringify(limitedModels) !== JSON.stringify(selectedModels)) {
+			selectedModels = limitedModels;
 		}
 	}
 </script>
@@ -73,12 +78,16 @@
 					<div
 						class="  self-center mx-1 disabled:text-gray-600 disabled:hover:text-gray-600 -translate-y-[0.5px]"
 					>
-						<Tooltip content={$i18n.t('Add Model')}>
+						<Tooltip content={selectedModels.length >= MAX_MODELS ? `Maximum ${MAX_MODELS} models allowed` : $i18n.t('Add Model')}>
 							<button
-								class=" "
-								{disabled}
+								class="disabled:opacity-50 disabled:cursor-not-allowed"
+								disabled={disabled || selectedModels.length >= MAX_MODELS}
 								on:click={() => {
+									if (selectedModels.length < MAX_MODELS) {
 									selectedModels = [...selectedModels, ''];
+									} else {
+										toast.error(`Maximum ${MAX_MODELS} models allowed`);
+									}
 								}}
 								aria-label="Add Model"
 							>
@@ -99,12 +108,15 @@
 					<div
 						class="  self-center mx-1 disabled:text-gray-600 disabled:hover:text-gray-600 -translate-y-[0.5px]"
 					>
-						<Tooltip content={$i18n.t('Remove Model')}>
+						<Tooltip content={selectedModels.length <= 1 ? $i18n.t('At least one model is required') : $i18n.t('Remove Model')}>
 							<button
-								{disabled}
+								class="disabled:opacity-50 disabled:cursor-not-allowed"
+								disabled={disabled || selectedModels.length <= 1}
 								on:click={() => {
+									if (selectedModels.length > 1) {
 									selectedModels.splice(selectedModelIdx, 1);
 									selectedModels = selectedModels;
+									}
 								}}
 								aria-label="Remove Model"
 							>

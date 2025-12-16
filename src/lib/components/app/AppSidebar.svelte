@@ -5,7 +5,7 @@
 
 	let selected = '';
 </script>
-
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div class="min-w-[4.5rem] bg-gray-50 dark:bg-gray-950 flex gap-2.5 flex-col pt-8">
 	<div class="flex justify-center relative">
 		{#if selected === 'home'}
@@ -26,8 +26,8 @@
 				}}
 			>
 				<img
-					src="{WEBUI_BASE_URL}/static/splash.png"
-					class="size-11 dark:invert p-0.5"
+					src="{WEBUI_BASE_URL}/static/favicon.png"
+					class="size-12 p-0.5"
 					alt="logo"
 					draggable="false"
 				/>
@@ -51,7 +51,7 @@
 		>
 			<img
 				src="{WEBUI_BASE_URL}/static/favicon.png"
-				class="size-10 {selected === '' ? 'rounded-2xl' : 'rounded-full'}"
+				class="size-11 {selected === '' ? 'rounded-2xl' : 'rounded-full'}"
 				alt="logo"
 				draggable="false"
 			/>

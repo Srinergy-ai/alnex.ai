@@ -135,21 +135,8 @@
 		const logo = document.getElementById('logo');
 
 		if (logo) {
-			const isDarkMode = document.documentElement.classList.contains('dark');
-
-			if (isDarkMode) {
-				const darkImage = new Image();
-				darkImage.src = `${WEBUI_BASE_URL}/static/favicon-dark.png`;
-
-				darkImage.onload = () => {
-					logo.src = `${WEBUI_BASE_URL}/static/favicon-dark.png`;
-					logo.style.filter = ''; // Ensure no inversion is applied if favicon-dark.png exists
-				};
-
-				darkImage.onerror = () => {
-					logo.style.filter = 'invert(1)'; // Invert image if favicon-dark.png is missing
-				};
-			}
+			logo.src = `${WEBUI_BASE_URL}/static/favicon.png`;
+			logo.style.filter = ''; // Use favicon.png for both light and dark modes
 		}
 	}
 
@@ -208,7 +195,7 @@
 		>
 			<div class="w-full px-10 min-h-screen flex flex-col text-center">
 				{#if ($config?.features.auth_trusted_header ?? false) || $config?.features.auth === false}
-					<div class=" my-auto pb-10 w-full sm:max-w-md">
+					<div class=" my-auto pb-10 w-full sm:max-w-[35rem]">
 						<div
 							class="flex items-center justify-center gap-3 text-xl sm:text-2xl text-center font-medium dark:text-gray-200"
 						>
@@ -223,7 +210,7 @@
 					</div>
 				{:else}
 					<div class="my-auto flex flex-col justify-center items-center">
-						<div class=" sm:max-w-md my-auto pb-10 w-full dark:text-gray-100">
+						<div class=" sm:max-w-[35rem] my-auto pb-10 w-full dark:text-gray-100">
 							{#if $config?.metadata?.auth_logo_position === 'center'}
 								<div class="flex justify-center mb-6">
 									<img
@@ -276,7 +263,7 @@
 													bind:value={name}
 													type="text"
 													id="name"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+													class="my-1 w-full text-base py-2.5 px-3 outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg"
 													autocomplete="name"
 													placeholder={$i18n.t('Enter Your Full Name')}
 													required
@@ -292,7 +279,7 @@
 												<input
 													bind:value={ldapUsername}
 													type="text"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+													class="my-1 w-full text-base py-2.5 px-3 outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg"
 													autocomplete="username"
 													name="username"
 													id="username"
@@ -309,7 +296,7 @@
 													bind:value={email}
 													type="email"
 													id="email"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+													class="my-1 w-full text-base py-2.5 px-3 outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg"
 													autocomplete="email"
 													name="email"
 													placeholder={$i18n.t('Enter Your Email')}
@@ -326,7 +313,7 @@
 												bind:value={password}
 												type="password"
 												id="password"
-												class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+												class="my-1 w-full text-base py-2.5 px-3 outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg"
 												placeholder={$i18n.t('Enter Your Password')}
 												autocomplete={mode === 'signup' ? 'new-password' : 'current-password'}
 												name="password"
@@ -345,7 +332,7 @@
 													bind:value={confirmPassword}
 													type="password"
 													id="confirm-password"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent"
+													class="my-1 w-full text-base py-2.5 px-3 outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg"
 													placeholder={$i18n.t('Confirm Your Password')}
 													autocomplete="new-password"
 													name="confirm-password"
@@ -576,7 +563,7 @@
 							id="logo"
 							crossorigin="anonymous"
 							src="{WEBUI_BASE_URL}/static/favicon.png"
-							class=" w-6 rounded-full"
+							class=" w-14 rounded-full"
 							alt=""
 						/>
 					</div>
